@@ -21,9 +21,10 @@ class ChatServer:
 
     # what to do when message is received from a client
     def handleClient(self,client):
-        message=client.recv(1024).decode('utf-8')
-                    # if message received, send (broadcast) to all other users
-        self.broadcast(message,client)
+        while True:
+            message=client.recv(1024).decode('utf-8')
+            # if message received, send (broadcast) to all other users
+            self.broadcast(message,client)
 
     def run(self):
         while True:
@@ -34,7 +35,7 @@ class ChatServer:
             self.clients.append(client)
             print('New connection established')
 
-            thread=threading.Thread(target=self.handleClient,args=(client,))
+            thread=threading.Thread(target=self.handleClient,args=(client,),daemon=True)
             thread.start()
 
 if __name__=='__main__':
