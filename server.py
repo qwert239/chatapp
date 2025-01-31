@@ -2,7 +2,7 @@
 
 import socket
 import threading
-
+import sys
 
 class ChatServer:
     def __init__(self,host,port):
@@ -39,7 +39,6 @@ class ChatServer:
             thread.start()
 
 if __name__=='__main__':
-    # Change to local IP address of server
-    server=ChatServer('192.168.0.233',55555)
+    server=ChatServer(sys.argv[1],55555)
     server.run()
             

@@ -4,6 +4,7 @@ import tkinter as tk
 import socket
 import threading
 import random
+import sys
 
 class ChatApplication:
     def __init__(self,host,port):
@@ -73,8 +74,7 @@ class ChatApplication:
 
             # TEST
             print(message)
-
-    
-# Change to local IP address of server
-app=ChatApplication('192.168.0.233',55555)
+            
+if __name__=='__main__':
+    app=ChatApplication(sys.argv[1],55555)
 
